@@ -2,52 +2,58 @@
 
 /** @var yii\web\View $this */
 
-$this->title = 'My Yii Application';
+$this->title = 'E-sportowy planer';
 ?>
+
 <div class="site-index">
-
-    <div class="jumbotron text-center bg-transparent mt-5 mb-5">
-        <h1 class="display-4">Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="https://www.yiiframework.com">Get started with Yii</a></p>
+    <!-- Hero Section -->
+    <div class="hero-section text-center py-5">
+        <h1 class="hero-title"> E-sport Planer</h1>
+        <p class="hero-subtitle">Zarządzaj swoim czasem i osiągaj cele</p>
+        <p><a class="btn btn-primary btn-lg" href="http://localhost:8081/index.php?r=site%2Flogin"> Zacznij teraz</a></p>
     </div>
 
+    <!-- Stats Section -->
     <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4 mb-3">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+        <div class="row g-4 mb-5">
+            <!-- Treningi Card -->
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card training-card">
+                    
+                    <h2>Treningi</h2>
+                    <p>Zaplanuj i monitoruj swoje sesje treningowe. Śledzenie postępów i osiągnięć.</p>
+                    <div class="card-stats">
+                        <span class="stat-badge">Godziny nauki</span>
+                        <span class="stat-badge">Sesje</span>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-4 mb-3">
-                <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
+            <!-- Odpoczynek Card -->
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card rest-card">
+                    <h2>Odpoczynek</h2>
+                    <a href="/c/rest/index.php"></a>
+                    <p>Zadbaj o regenerację i zdrowie. Zarządzaj czasem odpoczynku dla maksymalnej wydajności.</p>
+                    <div class="card-stats">
+                        <span class="stat-badge">Godziny snu</span>
+                        <span class="stat-badge">Przerwy</span>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+            <!-- Statystyki Card -->
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card stats-card">
 
-                <p><a class="btn btn-outline-secondary" href="https://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+                    <h2>Statystyki</h2>
+                    <p>Analizuj swoje postępy z detailowymi raportami i wykresami wydajności.</p>
+                    <div class="card-stats">
+                        <span class="stat-badge">Raporty</span>
+                        <span class="stat-badge">Wykresy</span>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
 </div>
