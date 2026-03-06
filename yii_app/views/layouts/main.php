@@ -24,41 +24,70 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 <head>
     <title><?= Html::encode($this->title) ?></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <?php $this->head() ?>
 </head>
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
 
-<header id="header">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top']
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav'],
-        'items' => [
-            ['label' => 'Treningi', 'url' => ['/site/index']],
-            ['label' => 'Odpoczynek', 'url' => ['/site/about']],
-            ['label' => 'Statystyki', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest
-                ? ['label' => 'Login', 'url' => ['/site/login']]
-                : '<li class="nav-item">'
-                    . Html::beginForm(['/site/logout'])
-                    . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->username . ')',
-                        ['class' => 'nav-link btn btn-link logout']
-                    )
-                    . Html::endForm()
-                    . '</li>'
-        ]
-    ]);
-    NavBar::end();
-    ?>
-</header>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background: rgba(15, 23, 42, 0.98); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+    <div class="container">
+        <!-- Brand -->
+        <a class="navbar-brand" href="<?= Yii::$app->homeUrl ?>">
+            <i class="fas fa-gamepad me-2" style="color: #6366f1;"></i>
+            <?= Yii::$app->name ?>
+        </a>
+        
+        <!-- Mobile Toggle Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Nav Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= Yii::$app->homeUrl ?>">
+                        <i class="fas fa-home me-1"></i> Start
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['/training/index']) ?>">
+                        <i class="fas fa-bullseye me-1"></i> Treningi
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['/rest/index']) ?>">
+                        <i class="fas fa-moon me-1"></i> Odpoczynek
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['/stats/index']) ?>">
+                        <i class="fas fa-chart-line me-1"></i> Statystyki
+                    </a>
+                </li>
+                <?php if (Yii::$app->user->isGuest): ?>
+                    <li class="nav-item ms-md-2">
+                        <a class="nav-link btn btn-primary btn-sm px-3" href="<?= Yii::$app->urlManager->createUrl(['/site/login']) ?>">
+                            <i class="fas fa-sign-in-alt me-1"></i> Login
+                        </a>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item">
+                        <?= Html::beginForm(['/site/logout'], 'post', ['class' => 'd-inline']) ?>
+                            <button type="submit" class="nav-link btn btn-link logout">
+                                <i class="fas fa-sign-out-alt me-1"></i> Logout (<?= Yii::$app->user->identity->username ?>)
+                            </button>
+                        <?= Html::endForm() ?>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </div>
+</nav>
 
-<main id="main" class="flex-shrink-0" role="main">
+<!-- Main Content -->
+<main class="flex-shrink-0" role="main" style="padding-top: 70px;">
     <div class="container">
         <?php if (!empty($this->params['breadcrumbs'])): ?>
             <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>
@@ -68,12 +97,21 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     </div>
 </main>
 
-<footer id="footer" class="mt-auto py-3 bg-light">
+<!-- Footer -->
+<footer class="mt-auto py-4" style="background: rgba(15, 23, 42, 0.98); border-top: 1px solid rgba(255, 255, 255, 0.1);">
     <div class="container">
-        <div class="row text-muted">
-            <div class="col-md-6 text-center text-md-start">&copy; My Company <?= date('Y') ?></div>
-            <div class="col-md-6 text-center text-md-end"><?= Yii::powered() ?></div>
-        </div>
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start">
+                <span class="text-muted">
+                    <i class="fas fa-gamepad me-2" style="color: #6366f1;"></i>
+                    &copy; <?= date('Y') ?> E-sport Planer. Wszelkie prawa zastrzeżone.
+                </span>
+            </div>
+            <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                <span class="text-muted">
+                    Made with <i class="fas fa-heart text-danger mx-1"></i> for gamers
+                </span>
+            </div>
     </div>
 </footer>
 
