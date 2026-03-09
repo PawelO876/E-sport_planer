@@ -22,58 +22,34 @@ $this->title = 'Statystyki';
             <p class="mb-0">Przeglądaj swoje statystyki i postępy</p>
         </div>
 
-    <!-- Stats Overview -->
-    <div class="row g-4">
-        <!-- Total Trainings -->
-        <div class="col-md-6 col-lg-3">
-            <div class="card slide-up" style="animation-delay: 0.1s;">
-                <div class="card-body text-center">
-                    <div class="icon-box mx-auto mb-3" style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-bullseye fa-2x text-white"></i>
-                    </div>
-                    <h2 class="mb-1" style="font-weight: 700; color: #10b981;"><?= $trainingCount ?></h2>
-                    <p class="mb-0">Treningów</p>
-                </div>
+    <!-- Main Stat Card -->
+    <div class="card slide-up mb-4" style="background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);">
+        <div class="card-body text-center py-5">
+            <div class="stat-value" id="mainStatValue" style="font-size: 4rem; font-weight: 700; color: #10b981;">
+                <?= $trainingCount ?>
+            </div>
+            <p class="mb-3" id="mainStatLabel" style="font-size: 1.25rem; color: #e2e8f0;">Treningów</p>
+            
+            <!-- Stat Toggles -->
+            <div class="d-flex justify-content-center gap-2 flex-wrap">
+                <button class="btn btn-sm stat-btn active" data-value="<?= $trainingCount ?>" data-label="Treningów" data-color="#10b981" onclick="changeStat(this, <?= $trainingCount ?>, 'Treningów', '#10b981')">
+                    <i class="fas fa-bullseye me-1"></i> Treningi
+                </button>
+                <button class="btn btn-sm stat-btn" data-value="<?= $totalMinutes ?: 0 ?>" data-label="Minut treningu" data-color="#6366f1" onclick="changeStat(this, <?= $totalMinutes ?: 0 ?>, 'Minut treningu', '#6366f1')">
+                    <i class="fas fa-clock me-1"></i> Czas
+                </button>
+                <button class="btn btn-sm stat-btn" data-value="<?= $restCount ?>" data-label="Wpisów odpoczynku" data-color="#8b5cf6" onclick="changeStat(this, <?= $restCount ?>, 'Wpisów odpoczynku', '#8b5cf6')">
+                    <i class="fas fa-moon me-1"></i> Odpoczynek
+                </button>
+                <button class="btn btn-sm stat-btn" data-value="<?= $trainingCount > 0 ? round(($restCount / $trainingCount) * 100) : 0 ?>" data-label="Wskaźnik regeneracji" data-color="#f59e0b" onclick="changeStat(this, <?= $trainingCount > 0 ? round(($restCount / $trainingCount) * 100) : 0 ?>, 'Wskaźnik regeneracji', '#f59e0b')">
+                    <i class="fas fa-trophy me-1"></i> Regeneracja
+                </button>
+            </div>
         </div>
-
-        <!-- Total Time -->
-        <div class="col-md-6 col-lg-3">
-            <div class="card slide-up" style="animation-delay: 0.15s;">
-                <div class="card-body text-center">
-                    <div class="icon-box mx-auto mb-3" style="width: 60px; height: 60px; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-clock fa-2x text-white"></i>
-                    </div>
-                    <h2 class="mb-1" style="font-weight: 700; color: #6366f1;"><?= $totalMinutes ?: 0 ?></h2>
-                    <p class="mb-0">Minut treningu</p>
-                </div>
-        </div>
-
-        <!-- Rest Entries -->
-        <div class="col-md-6 col-lg-3">
-            <div class="card slide-up" style="animation-delay: 0.2s;">
-                <div class="card-body text-center">
-                    <div class="icon-box mx-auto mb-3" style="width: 60px; height: 60px; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-moon fa-2x text-white"></i>
-                    </div>
-                    <h2 class="mb-1" style="font-weight: 700; color: #8b5cf6;"><?= $restCount ?></h2>
-                    <p class="mb-0">Wpisów odpoczynku</p>
-                </div>
-        </div>
-
-        <!-- Efficiency Score -->
-        <div class="col-md-6 col-lg-3">
-            <div class="card slide-up" style="animation-delay: 0.25s;">
-                <div class="card-body text-center">
-                    <div class="icon-box mx-auto mb-3" style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-trophy fa-2x text-white"></i>
-                    </div>
-                    <h2 class="mb-1" style="font-weight: 700; color: #f59e0b;"><?= $trainingCount > 0 ? round(($restCount / $trainingCount) * 100) : 0 ?>%</h2>
-                    <p class="mb-0">Wskaźnik regeneracji</p>
-                </div>
-        </div>
+    </div>
 
     <!-- Progress Section -->
-    <div class="row g-4 mt-2">
+    <div class="row g-4">
         <div class="col-lg-8">
             <div class="card slide-up" style="animation-delay: 0.3s;">
                 <div class="card-header">
@@ -187,4 +163,43 @@ $this->title = 'Statystyki';
 .progress-ring circle {
     transition: stroke-dasharray 0.5s ease;
 }
+.stat-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+.stat-btn:hover, .stat-btn.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+.stat-value {
+    transition: all 0.5s ease;
+}
 </style>
+
+<script>
+function changeStat(btn, value, label, color) {
+    // Update buttons
+    document.querySelectorAll('.stat-btn').forEach(function(b) {
+        b.classList.remove('active');
+    });
+    btn.classList.add('active');
+    
+    // Update value with animation
+    var statValue = document.getElementById('mainStatValue');
+    statValue.style.color = color;
+    statValue.style.transform = 'scale(0.8)';
+    statValue.style.opacity = '0';
+    
+    setTimeout(function() {
+        statValue.textContent = value;
+        statValue.style.transform = 'scale(1)';
+        statValue.style.opacity = '1';
+    }, 150);
+    
+    // Update label
+    document.getElementById('mainStatLabel').textContent = label;
+}
+</script>
