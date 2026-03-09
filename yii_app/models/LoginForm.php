@@ -36,6 +36,18 @@ class LoginForm extends Model
     }
 
     /**
+     * @return array customized attribute labels
+     */
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'Nazwa użytkownika',
+            'password' => 'Hasło',
+            'rememberMe' => 'Zapamiętaj mnie',
+        ];
+    }
+
+    /**
      * Validates the password.
      * This method serves as the inline validation for password.
      *
@@ -79,3 +91,4 @@ class LoginForm extends Model
         return $this->_user;
     }
 }
+

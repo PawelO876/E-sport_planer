@@ -14,7 +14,7 @@ $this->title = 'Treningi';
     <div class="page-header slide-up">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
             <div>
-                <h1><i class="fas fa-bullseye me-2" style="color: #10b981;"></i><?= Html::encode($this->title) ?></h1>
+                <h1><i class="fas fa-bullseye me-2 icon-green"></i><?= Html::encode($this->title) ?></h1>
                 <p class="text-muted mb-0">Zarządzaj swoimi treningami i śledź postępy</p>
             </div>
             <?= Html::a('<i class="fas fa-plus me-2"></i>Dodaj trening', ['create'], ['class' => 'btn btn-success']) ?>
@@ -29,7 +29,7 @@ $this->title = 'Treningi';
 
     <!-- Training List -->
     <?php if (!empty($trainingList)): ?>
-        <div class="card slide-up" style="animation-delay: 0.1s;">
+        <div class="card slide-up animation-delay-1">
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-hover mb-0">
@@ -74,7 +74,7 @@ $this->title = 'Treningi';
         <!-- Stats Summary -->
         <div class="row g-3 mt-4">
             <div class="col-md-4">
-                <div class="card stat-card" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                <div class="card stat-card stat-card-gradient-green">
                     <div class="card-body text-center text-white">
                         <i class="fas fa-clipboard-list fa-2x mb-2"></i>
                         <h3><?= count($trainingList) ?></h3>
@@ -82,7 +82,7 @@ $this->title = 'Treningi';
                     </div>
             </div>
             <div class="col-md-4">
-                <div class="card stat-card" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);">
+                <div class="card stat-card stat-card-gradient-purple">
                     <div class="card-body text-center text-white">
                         <i class="fas fa-clock fa-2x mb-2"></i>
                         <h3><?= array_sum(array_column($trainingList, 'duration')) ?></h3>
@@ -90,7 +90,7 @@ $this->title = 'Treningi';
                     </div>
             </div>
             <div class="col-md-4">
-                <div class="card stat-card" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                <div class="card stat-card stat-card-gradient-amber">
                     <div class="card-body text-center text-white">
                         <i class="fas fa-gamepad fa-2x mb-2"></i>
                         <h3><?= count(array_unique(array_column($trainingList, 'game'))) ?></h3>
@@ -100,9 +100,9 @@ $this->title = 'Treningi';
     <?php else: ?>
         <div class="card slide-up">
             <div class="card-body text-center py-5">
-                <i class="fas fa-gamepad fa-4x text-muted mb-3"></i>
-                <h4 class="text-muted">Brak zapisanych treningów</h4>
-                <p class="text-muted">Rozpocznij swoją przygodę z e-sportem!</p>
+                <i class="fas fa-gamepad fa-4x mb-3"></i>
+                <h4 >Brak zapisanych treningów</h4>
+                <p >Rozpocznij swoją przygodę z e-sportem!</p>
                 <?= Html::a('<i class="fas fa-plus me-2"></i>Dodaj pierwszy trening', ['create'], ['class' => 'btn btn-primary']) ?>
             </div>
     <?php endif; ?>

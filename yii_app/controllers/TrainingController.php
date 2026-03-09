@@ -14,7 +14,16 @@ class TrainingController extends Controller
      */
     public function actionIndex()
     {
-        $trainingList = Training::find()->orderBy(['date' => SORT_DESC])->all();
+        // Require user to be logged in
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['/site/login']);
+        }
+        
+        $userId = Yii::$app->user->id;
+        $trainingList = Training::find()
+            ->where(['user_id' => $userId])
+            ->orderBy(['date' => SORT_DESC])
+            ->all();
 
         return $this->render('index', [
             'trainingList' => $trainingList,
@@ -28,15 +37,20 @@ class TrainingController extends Controller
      */
     public function actionCreate()
     {
+        // Require user to be logged in
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['/site/login']);
+        }
+        
         $training = new Training();
 
         if ($training->load(Yii::$app->request->post()) && $training->validate()) {
          
-            $training->user_id = Yii::$app->user->id ?? 1;
+            $training->user_id = Yii::$app->user->id;
             
             $training->save();
 
-            Yii::$app->session->setFlash('success', 'Training created');
+            Yii::$app->session->setFlash('success', 'Trening został dodany!');
 
             return $this->redirect(['index']);
         }

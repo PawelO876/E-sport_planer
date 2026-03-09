@@ -31,11 +31,11 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <?php $this->beginBody() ?>
 
 <!-- Navigation Bar -->
-<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background: rgba(15, 23, 42, 0.98); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top navbar-custom">
     <div class="container">
         <!-- Brand -->
         <a class="navbar-brand" href="<?= Yii::$app->homeUrl ?>">
-            <i class="fas fa-gamepad me-2" style="color: #6366f1;"></i>
+            <i class="fas fa-gamepad me-2 icon-primary"></i>
             <?= Yii::$app->name ?>
         </a>
         
@@ -87,7 +87,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 </nav>
 
 <!-- Main Content -->
-<main class="flex-shrink-0" role="main" style="padding-top: 70px;">
+<main class="flex-shrink-0 main-content-padding" role="main">
     <div class="container">
         <?php if (!empty($this->params['breadcrumbs'])): ?>
             <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>
@@ -98,12 +98,12 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 </main>
 
 <!-- Footer -->
-<footer class="mt-auto py-4" style="background: rgba(15, 23, 42, 0.98); border-top: 1px solid rgba(255, 255, 255, 0.1);">
+<footer class="mt-auto py-4 footer-custom">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6 text-center text-md-start">
                 <span class="text-muted">
-                    <i class="fas fa-gamepad me-2" style="color: #6366f1;"></i>
+                    <i class="fas fa-gamepad me-2 icon-primary"></i>
                     &copy; <?= date('Y') ?> E-sport Planer. Wszelkie prawa zastrzeżone.
                 </span>
             </div>

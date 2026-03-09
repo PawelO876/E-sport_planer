@@ -7,10 +7,9 @@ use app\models\Rest;
 
 /** @var yii\web\View $this */
 
-// Get stats data
-$trainingCount = Training::find()->count();
-$totalMinutes = Training::find()->sum('duration');
-$restCount = Rest::find()->count();
+/* @var int $trainingCount */
+/* @var int|null $totalMinutes */
+/* @var int $restCount */
 
 $this->title = 'Statystyki';
 ?>
@@ -19,8 +18,8 @@ $this->title = 'Statystyki';
     <!-- Page Header -->
     <div class="page-header slide-up">
         <div>
-            <h1><i class="fas fa-chart-line me-2" style="color: #f59e0b;"></i><?= Html::encode($this->title) ?></h1>
-            <p class="text-muted mb-0">Przeglądaj swoje statystyki i postępy</p>
+            <h1><i class="fas fa-chart-line me-2 icon-amber"></i><?= Html::encode($this->title) ?></h1>
+            <p class="mb-0">Przeglądaj swoje statystyki i postępy</p>
         </div>
 
     <!-- Stats Overview -->
@@ -33,7 +32,7 @@ $this->title = 'Statystyki';
                         <i class="fas fa-bullseye fa-2x text-white"></i>
                     </div>
                     <h2 class="mb-1" style="font-weight: 700; color: #10b981;"><?= $trainingCount ?></h2>
-                    <p class="text-muted mb-0">Treningów</p>
+                    <p class="mb-0">Treningów</p>
                 </div>
         </div>
 
@@ -45,7 +44,7 @@ $this->title = 'Statystyki';
                         <i class="fas fa-clock fa-2x text-white"></i>
                     </div>
                     <h2 class="mb-1" style="font-weight: 700; color: #6366f1;"><?= $totalMinutes ?: 0 ?></h2>
-                    <p class="text-muted mb-0">Minut treningu</p>
+                    <p class="mb-0">Minut treningu</p>
                 </div>
         </div>
 
@@ -57,7 +56,7 @@ $this->title = 'Statystyki';
                         <i class="fas fa-moon fa-2x text-white"></i>
                     </div>
                     <h2 class="mb-1" style="font-weight: 700; color: #8b5cf6;"><?= $restCount ?></h2>
-                    <p class="text-muted mb-0">Wpisów odpoczynku</p>
+                    <p class="mb-0">Wpisów odpoczynku</p>
                 </div>
         </div>
 
@@ -69,7 +68,7 @@ $this->title = 'Statystyki';
                         <i class="fas fa-trophy fa-2x text-white"></i>
                     </div>
                     <h2 class="mb-1" style="font-weight: 700; color: #f59e0b;"><?= $trainingCount > 0 ? round(($restCount / $trainingCount) * 100) : 0 ?>%</h2>
-                    <p class="text-muted mb-0">Wskaźnik regeneracji</p>
+                    <p class="mb-0">Wskaźnik regeneracji</p>
                 </div>
         </div>
 
@@ -126,7 +125,7 @@ $this->title = 'Statystyki';
                             </div>
                             <div>
                                 <strong>Pierwszy krok!</strong>
-                                <p class="text-muted mb-0 small">Ukończono pierwszy trening</p>
+                                <p class=" mb-0 small">Ukończono pierwszy trening</p>
                             </div>
                     <?php endif; ?>
                     
@@ -137,7 +136,7 @@ $this->title = 'Statystyki';
                             </div>
                             <div>
                                 <strong>Na fali!</strong>
-                                <p class="text-muted mb-0 small">5 ukończonych treningów</p>
+                                <p class=" mb-0 small">5 ukończonych treningów</p>
                             </div>
                     <?php endif; ?>
                     
@@ -148,14 +147,14 @@ $this->title = 'Statystyki';
                             </div>
                             <div>
                                 <strong>Dbaj o siebie!</strong>
-                                <p class="text-muted mb-0 small">3 wpisy odpoczynku</p>
+                                <p class=" mb-0 small">3 wpisy odpoczynku</p>
                             </div>
                     <?php endif; ?>
                     
                     <?php if ($trainingCount < 1 && $restCount < 1): ?>
                         <div class="text-center py-4">
-                            <i class="fas fa-trophy fa-3x text-muted mb-3"></i>
-                            <p class="text-muted">Zacznij trenować aby odblokować osiągnięcia!</p>
+                            <i class="fas fa-trophy fa-3x  mb-3"></i>
+                            <p >Zacznij trenować aby odblokować osiągnięcia!</p>
                         </div>
                     <?php endif; ?>
                 </div>

@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
+use app\models\RegistrationForm;
 use app\models\ContactForm;
 
 class SiteController extends Controller
@@ -82,6 +83,39 @@ class SiteController extends Controller
 
         $model->password = '';
         return $this->render('login', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Register action.
+     *
+     * @return Response|string
+     */
+    public function actionRegister()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new RegistrationForm();
+        
+        if ($model->load(Yii::$app->request->post())) {
+            $user = new \app\models\User();
+            $user->username = $model->username;
+            $user->email = $model->email;
+            $user->setPassword($model->password);
+            $user->generateAuthKey();
+            
+            if ($user->save()) {
+                Yii::$app->session->setFlash('success', 'Konto zostało utworzone. Możesz się teraz zalogować.');
+                return $this->redirect(['login']);
+            } else {
+                Yii::$app->session->setFlash('error', 'Nie udało się utworzyć konta. Spróbuj ponownie.');
+            }
+        }
+
+        return $this->render('register', [
             'model' => $model,
         ]);
     }

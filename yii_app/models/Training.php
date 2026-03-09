@@ -14,7 +14,7 @@ class Training extends ActiveRecord
     public function rules()
     {
         return [
-            [['date', 'duration', 'game', 'training_type', 'user_id'], 'required'],
+            [['date', 'duration', 'game', 'training_type'], 'required'],
             [['date'], 'safe'],
             [['duration', 'user_id'], 'integer'],
             [['game', 'training_type'], 'string', 'max' => 255],

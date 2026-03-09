@@ -64,7 +64,7 @@ body {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-/* Nav Links */
+
 .nav-link {
     color: var(--text-light) !important;
     font-weight: 500;
@@ -99,7 +99,7 @@ main {
     padding-bottom: 2rem;
 }
 
-/* Hero Section */
+
 .hero-section {
     background: var(--gradient-dark);
     padding: 80px 0;
@@ -198,7 +198,7 @@ main {
 }
 
 .feature-card p {
-    color: var(--text-muted);
+    color: #cbd5e1;
     flex-grow: 1;
 }
 
@@ -363,6 +363,9 @@ main {
     padding: 16px;
     vertical-align: middle;
 }
+.mb-3, .mb-0 {
+    color: #fff;
+}
 
 /* Cards */
 .card {
@@ -384,6 +387,7 @@ main {
 .card-body {
     padding: 1.5rem;
     color: var(--text-light);
+    color:white;
 }
 
 /* Alerts */
@@ -586,4 +590,150 @@ footer .text-muted {
 /* Checkbox custom */
 .form-check {
     padding-left: 1.5em;
+}
+
+
+.icon-primary { color: #6366f1 !important; }
+.icon-purple { color: #8b5cf6 !important; }
+.icon-green { color: #10b981 !important; }
+.icon-amber { color: #f59e0b !important; }
+.icon-cyan { color: #06b6d4 !important; }
+
+
+.text-primary-color { color: #6366f1 !important; }
+.text-purple-color { color: #8b5cf6 !important; }
+.text-green-color { color: #10b981 !important; }
+.text-amber-color { color: #f59e0b !important; }
+.text-cyan-color { color: #06b6d4 !important; }
+.text-muted-light { color: #94a3b8 !important; }
+.text-muted-lighter { color: #cbd5e1 !important; }
+
+
+.animation-delay-1 { animation-delay: 0.1s !important; }
+.animation-delay-2 { animation-delay: 0.15s !important; }
+.animation-delay-3 { animation-delay: 0.2s !important; }
+.animation-delay-4 { animation-delay: 0.25s !important; }
+.animation-delay-5 { animation-delay: 0.3s !important; }
+
+
+.stat-card-gradient-green {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+.stat-card-gradient-purple {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+}
+.stat-card-gradient-amber {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+.stat-card-gradient-violet {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+.stat-card-gradient-cyan {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+}
+
+
+.icon-box {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon-box-green {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+.icon-box-purple {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+}
+.icon-box-violet {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+.icon-box-amber {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+/* Badge Styles */
+.badge-purple {
+    background: rgba(139, 92, 246, 0.2) !important;
+    color: #8b5cf6 !important;
+}
+
+/* Navbar Custom */
+.navbar-custom {
+    background: rgba(15, 23, 42, 0.98) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Main Content Padding */
+.main-content-padding {
+    padding-top: 70px;
+}
+
+/* Footer Custom */
+.footer-custom {
+    background: rgba(15, 23, 42, 0.98);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Link Styles */
+.link-primary {
+    color: #6366f1 !important;
+}
+.link-primary:hover {
+    color: #818cf8 !important;
+}
+.link-primary-bold {
+    color: #6366f1 !important;
+    font-weight: 600 !important;
+}
+.link-muted {
+    color: #94a3b8 !important;
+}
+.link-muted-light {
+    color: #cbd5e1 !important;
+}
+
+/* Login Section */
+.login-section-custom {
+    display: none;
+}
+
+/* Card Header Flex */
+.card-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Progress Ring */
+.progress-ring {
+    width: 120px;
+    height: 120px;
+    position: relative;
+}
+
+/* Title with Icon */
+.title-with-icon {
+    display: flex;
+    align-items: center;
+}
+
+/* Small Title */
+.small-title {
+    font-size: 0.85rem;
+}
+
+/* Strong Bold */
+.strong-bold {
+    font-weight: 700;
+}
+
+/* Stats Number */
+.stats-number {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
 }

@@ -15,7 +15,7 @@ $this->title = 'Odpoczynek';
     <div class="page-header slide-up">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
             <div>
-                <h1><i class="fas fa-moon me-2" style="color: #8b5cf6;"></i><?= Html::encode($this->title) ?></h1>
+                <h1><i class="fas fa-moon me-2 icon-purple"></i><?= Html::encode($this->title) ?></h1>
                 <p class="text-muted mb-0">Zarządzaj czasem odpoczynku i regeneracji</p>
             </div>
     </div>
@@ -30,7 +30,7 @@ $this->title = 'Odpoczynek';
     <div class="row g-4">
         <!-- Add Rest Form -->
         <div class="col-lg-5">
-            <div class="card slide-up" style="animation-delay: 0.1s;">
+            <div class="card slide-up animation-delay-1">
                 <div class="card-header">
                     <i class="fas fa-plus-circle me-2"></i>Dodaj wpis
                 </div>
@@ -63,7 +63,7 @@ $this->title = 'Odpoczynek';
                 </div>
 
             <!-- Tips Card -->
-            <div class="card mt-4 slide-up" style="animation-delay: 0.15s;">
+            <div class="card mt-4 slide-up animation-delay-2">
                 <div class="card-header">
                     <i class="fas fa-heart me-2"></i>Dlaczego odpoczynek jest ważny?
                 </div>
@@ -71,19 +71,19 @@ $this->title = 'Odpoczynek';
                     <ul class="list-unstyled mb-0">
                         <li class="mb-3">
                             <i class="fas fa-brain text-info me-2"></i>
-                            <span class="text-muted">Odpoczynek poprawia koncentrację</span>
+                            <span>Odpoczynek poprawia koncentrację</span>
                         </li>
                         <li class="mb-3">
                             <i class="fas fa-bolt text-warning me-2"></i>
-                            <span class="text-muted">Zwiększa reflexy i czas reakcji</span>
+                            <span>Zwiększa refleks </span>
                         </li>
                         <li class="mb-3">
                             <i class="fas fa-smile text-success me-2"></i>
-                            <span class="text-muted">Zmniejsza stres i wypalenie</span>
+                            <span>Zmniejsza stres i wypalenie</span>
                         </li>
                         <li class="mb-0">
                             <i class="fas fa-chart-line text-primary me-2"></i>
-                            <span class="text-muted">Pomaga w utrzymaniu formy</span>
+                            <span>Pomaga w utrzymaniu formy</span>
                         </li>
                     </ul>
                 </div>
@@ -92,7 +92,7 @@ $this->title = 'Odpoczynek';
         <!-- Rest List -->
         <div class="col-lg-7">
             <?php if (!empty($restList)): ?>
-                <div class="card slide-up" style="animation-delay: 0.2s;">
+                <div class="card slide-up animation-delay-3">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <span><i class="fas fa-list me-2"></i>Historia odpoczynku</span>
                         <span class="badge bg-primary"><?= count($restList) ?> wpisów</span>

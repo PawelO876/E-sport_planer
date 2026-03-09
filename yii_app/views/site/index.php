@@ -22,10 +22,11 @@ $this->title = 'E-sportowy planer';
             <div class="col-lg-8 text-center">
                 <h1 class="hero-title">E-sport Planer</h1>
                 <p class="hero-subtitle">Zarządzaj swoim czasem, trenuj mądrze i osiągaj sukcesy w ulubionych grach</p>
-                <button class="btn btn-primary btn-lg" id="start-btn">
+                    <button class="btn btn-primary btn-lg" id="start-btn">
                     <i class="fas fa-gamepad me-2"></i>Zacznij teraz
                 </button>
             </div>
+        </div>
         
         <!-- Feature Cards -->
         <div class="row g-4 mt-5">
@@ -34,7 +35,7 @@ $this->title = 'E-sportowy planer';
                 <a href="<?= Url::to(['/training/index']) ?>" class="text-decoration-none">
                     <div class="feature-card training-card">
                         <div class="icon-wrapper mb-3">
-                            <i class="fas fa-bullseye fa-2x" style="color: #10b981;"></i>
+                            <i class="fas fa-bullseye fa-2x icon-green"></i>
                         </div>
                         <h2>Treningi</h2>
                         <p>Planuj i monitoruj sesje treningowe. Śledź swój progres i osiągaj nowe levele.</p>
@@ -42,6 +43,7 @@ $this->title = 'E-sportowy planer';
                             <span class="stat-badge"><i class="fas fa-clock me-1"></i>Godziny nauki</span>
                             <span class="stat-badge"><i class="fas fa-clipboard-list me-1"></i>Sesje</span>
                         </div>
+                    </div>
                 </a>
             </div>
 
@@ -50,7 +52,7 @@ $this->title = 'E-sportowy planer';
                 <a href="<?= Url::to(['/rest/index']) ?>" class="text-decoration-none">
                     <div class="feature-card rest-card">
                         <div class="icon-wrapper mb-3">
-                            <i class="fas fa-moon fa-2x" style="color: #8b5cf6;"></i>
+                            <i class="fas fa-moon fa-2x icon-purple"></i>
                         </div>
                         <h2>Odpoczynek</h2>
                         <p>Zadbaj o regenerację i zdrowie. Właściwy odpoczynek to klucz do sukcesu.</p>
@@ -58,6 +60,7 @@ $this->title = 'E-sportowy planer';
                             <span class="stat-badge"><i class="fas fa-bed me-1"></i>Godziny snu</span>
                             <span class="stat-badge"><i class="fas fa-coffee me-1"></i>Przerwy</span>
                         </div>
+                    </div>
                 </a>
             </div>
 
@@ -66,7 +69,7 @@ $this->title = 'E-sportowy planer';
                 <a href="<?= Url::to(['/stats/index']) ?>" class="text-decoration-none">
                     <div class="feature-card stats-card">
                         <div class="icon-wrapper mb-3">
-                            <i class="fas fa-chart-line fa-2x" style="color: #f59e0b;"></i>
+                            <i class="fas fa-chart-line fa-2x icon-amber"></i>
                         </div>
                         <h2>Statystyki</h2>
                         <p>Analizuj postępy z detailowymi raportami i wykresami wydajności.</p>
@@ -74,19 +77,21 @@ $this->title = 'E-sportowy planer';
                             <span class="stat-badge"><i class="fas fa-file-alt me-1"></i>Raporty</span>
                             <span class="stat-badge"><i class="fas fa-chart-pie me-1"></i>Wykresy</span>
                         </div>
+                    </div>
                 </a>
             </div>
+        </div>
     </div>
 </section>
 
 <!-- Login Section -->
-<section class="login-section py-5" id="login-section" style="display: none;">
+<section class="login-section py-5" id="login-section">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-5">
                 <div class="login-card">
                     <div class="text-center mb-4">
-                        <i class="fas fa-user-circle fa-4x" style="color: #6366f1;"></i>
+                        <i class="fas fa-user-circle fa-4x icon-primary"></i>
                         <h2 class="mt-3">Zaloguj się</h2>
                         <p class="text-muted">Wpisz swoje dane aby kontynuować</p>
                     </div>
@@ -128,8 +133,8 @@ $this->title = 'E-sportowy planer';
 
                     <?php ActiveForm::end(); ?>
                     
-                    <div class="text-center mt-4" style="color: #94a3b8;">
-                        Zaloguj się jako <strong style="color: #6366f1;">admin/admin</strong> lub <strong style="color: #6366f1;">demo/demo</strong>
+                    <div class="text-center mt-4 text-muted-lighter">
+                        Nie masz jeszcze konta? <strong><?= Html::a('Zarejestruj się', ['/site/register'], ['class' => 'link-primary-bold']) ?></strong>
                     </div>
             </div>
     </div>

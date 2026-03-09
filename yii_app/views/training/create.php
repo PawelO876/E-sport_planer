@@ -14,14 +14,14 @@ $this->title = 'Nowy trening';
     <div class="page-header slide-up">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
             <div>
-                <h1><i class="fas fa-plus-circle me-2" style="color: #10b981;"></i><?= Html::encode($this->title) ?></h1>
+                <h1><i class="fas fa-plus-circle me-2 icon-green"></i><?= Html::encode($this->title) ?></h1>
                 <p class="text-muted mb-0">Dodaj nowy trening do swojego planu</p>
             </div>
     </div>
 
     <div class="row">
         <div class="col-lg-8">
-            <div class="card slide-up" style="animation-delay: 0.1s;">
+            <div class="card slide-up animation-delay-1">
                 <div class="card-body">
                     <?php $form = ActiveForm::begin([
                         'options' => ['class' => 'training-form'],
@@ -72,7 +72,7 @@ $this->title = 'Nowy trening';
         </div>
         
         <div class="col-lg-4">
-            <div class="card slide-up" style="animation-delay: 0.2s;">
+            <div class="card slide-up animation-delay-3">
                 <div class="card-header">
                     <i class="fas fa-lightbulb me-2"></i>Wskazówki
                 </div>
@@ -80,19 +80,19 @@ $this->title = 'Nowy trening';
                     <ul class="list-unstyled mb-0">
                         <li class="mb-3">
                             <i class="fas fa-check-circle text-success me-2"></i>
-                            <span class="text-muted">Regularny trening jest kluczem do sukcesu</span>
+                            <span>Regularny trening jest kluczem do sukcesu</span>
                         </li>
                         <li class="mb-3">
                             <i class="fas fa-check-circle text-success me-2"></i>
-                            <span class="text-muted">Pamiętaj o rozgrzewce przed każdą sesją</span>
+                            <span>Pamiętaj o rozgrzewce przed każdą sesją</span>
                         </li>
                         <li class="mb-3">
                             <i class="fas fa-check-circle text-success me-2"></i>
-                            <span class="text-muted">Notuj swoje postępy i analizuj je</span>
+                            <span>Notuj swoje postępy i analizuj je</span>
                         </li>
                         <li class="mb-0">
                             <i class="fas fa-check-circle text-success me-2"></i>
-                            <span class="text-muted">Rób przerwy aby uniknąć wypalenia</span>
+                            <span>Rób przerwy aby uniknąć wypalenia</span>
                         </li>
                     </ul>
                 </div>

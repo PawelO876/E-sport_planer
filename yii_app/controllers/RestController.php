@@ -15,10 +15,15 @@ class RestController extends Controller
      */
     public function actionIndex()
     {
+        // Require user to be logged in
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['/site/login']);
+        }
+        
         $model = new Rest();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->user_id = Yii::$app->user->id ?? 1;
+            $model->user_id = Yii::$app->user->id;
 
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Dane zapisane.');
@@ -26,7 +31,11 @@ class RestController extends Controller
             }
         }
 
-        $restList = Rest::find()->orderBy(['date' => SORT_DESC])->all();
+        $userId = Yii::$app->user->id;
+        $restList = Rest::find()
+            ->where(['user_id' => $userId])
+            ->orderBy(['date' => SORT_DESC])
+            ->all();
 
         return $this->render('index', [
             'model' => $model,
