@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
-use app\models\Training;
+use app\models\extended\Training;
 
 class TrainingController extends Controller
 {

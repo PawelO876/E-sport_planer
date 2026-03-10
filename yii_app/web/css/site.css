@@ -7,11 +7,13 @@
     --primary-color: #6366f1;
     --secondary-color: #8b5cf6;
     --accent-color: #06b6d4;
+    --success-color: #10b981; /* added for green accents */
     --dark-bg: #0f172a;
     --card-bg: #1e293b;
     --text-light: #f8fafc;
     --text-muted: #94a3b8;
     --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+    --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
     --gradient-dark: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
     --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -184,6 +186,37 @@ main {
     color: var(--text-light);
 }
 
+/* Utilities added from inline styles */
+.progress-ring {
+    width: 120px;
+    height: 120px;
+    position: relative;
+}
+.progress-ring .progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+}
+
+.badge-rest-date {
+    background: rgba(139, 92, 246, 0.2);
+    color: #8b5cf6;
+}
+
+.icon-purple {
+    color: #8b5cf6;
+}
+
+.stat-card-purple {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+.stat-card-accent {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+}
+
 .feature-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
@@ -219,11 +252,11 @@ main {
 }
 
 /* Card Colors */
-.training-card:hover { border-color: #10b981; }
-.training-card .stat-badge { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+.training-card:hover { border-color: var(--success-color); }
+.training-card .stat-badge { background: rgba(16, 185, 129, 0.2); color: var(--success-color); }
 
-.rest-card:hover { border-color: #8b5cf6; }
-.rest-card .stat-badge { background: rgba(139, 92, 246, 0.2); color: #8b5cf6; }
+.rest-card:hover { border-color: var(--secondary-color); }
+.rest-card .stat-badge { background: rgba(139, 92, 246, 0.2); color: var(--secondary-color); }
 
 .stats-card:hover { border-color: #f59e0b; }
 .stats-card .stat-badge { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
@@ -287,8 +320,8 @@ main {
 }
 
 /* Buttons */
-.btn-primary {
-    background: var(--gradient-primary);
+.btn-primary,
+.btn-success {
     border: none;
     padding: 10px 24px;
     font-weight: 600;
@@ -297,25 +330,13 @@ main {
     color: white;
 }
 
-.btn-primary:hover {
+.btn-primary { background: var(--gradient-primary); }
+.btn-success { background: var(--gradient-success); }
+
+.btn-primary:hover,
+.btn-success:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
-    background: var(--gradient-primary);
-    color: white;
-}
-
-.btn-success {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    border: none;
-    font-weight: 600;
-    border-radius: 10px;
-    color: white;
-}
-
-.btn-success:hover {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    transform: translateY(-2px);
-    color: white;
 }
 
 .btn-outline-secondary {
@@ -363,9 +384,7 @@ main {
     padding: 16px;
     vertical-align: middle;
 }
-.mb-3, .mb-0 {
-    color: #fff;
-}
+/* removed redundant global color override */
 
 /* Cards */
 .card {
@@ -737,3 +756,113 @@ footer .text-muted {
     font-size: 2rem;
     margin-bottom: 0.25rem;
 }
+
+/* custom badge for rest dates */
+.badge-purple-light {
+    background: rgba(139, 92, 246, 0.2) !important;
+    color: #8b5cf6 !important;
+}
+
+/* statistic cards gradients */
+.stat-gradient-purple {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%) !important;
+}
+.stat-gradient-aqua {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%) !important;
+}
+
+/* dark gradient used on main stat card */
+.dark-gradient-card {
+    background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+}
+
+/* main stat styling */
+.main-stat-value {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #10b981; /* initial color, will be overridden by JS */
+    transition: all 0.5s ease;
+}
+
+.main-stat-label {
+    font-size: 1.25rem;
+    color: #e2e8f0;
+}
+
+/* extra animation delay helpers */
+.animation-delay-6 { animation-delay: 0.35s !important; }
+.animation-delay-7 { animation-delay: 0.4s !important; }
+
+/* helpers for positioning inside ring */
+.center-absolute {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ring-text {
+    font-size: 1.5rem;
+}
+
+/* icon avatars for achievements */
+.icon-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ach-icon-gold { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+.ach-icon-green { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+.ach-icon-purple { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }
+
+/* button variants with gradient */
+.btn-gradient-purple {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    border: none;
+}
+
+/* progress ring animation and stat button styling (formerly inline) */
+.progress-ring circle {
+    transition: stroke-dasharray 0.5s ease;
+}
+
+.stat-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+.stat-btn:hover, .stat-btn.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Purple progress bar */
+.progress-bar.bg-purple {
+    background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+/* Stats boxes - darker background for visibility */
+.stat-box {
+    background: rgba(30, 41, 59, 0.8) !important;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    color: #f8fafc;
+}
+
+.stat-box i {
+    color: #8b5cf6;
+}
+
+.stat-box h4 {
+    color: #f8fafc !important;
+}
+
+.stat-box small {
+    color: #94a3b8 !important;
+}
+
+

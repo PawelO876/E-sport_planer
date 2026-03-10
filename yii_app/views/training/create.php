@@ -1,7 +1,7 @@
 <?php
 
 /* @var yii\web\View $this */
-/* @var app\models\Training $training */
+/* @var app\models\extended\Training $training */
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;

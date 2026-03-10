@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
-use app\models\Rest;
+use app\models\extended\Rest;
 
 class RestController extends Controller
 {

@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var app\models\RegistrationForm $model */
+/** @var app\models\extended\RegistrationForm $model */
 
 $this->title = 'Rejestracja';
 ?>
@@ -55,13 +55,13 @@ $this->title = 'Rejestracja';
 
                     <div class="d-grid gap-2">
                         <?= Html::submitButton('<i class="fas fa-user-plus me-2"></i>Zarejestruj', ['class' => 'btn btn-primary btn-lg', 'name' => 'register-button']) ?>
-                        <?= Html::a('<i class="fas fa-arrow-left me-2"></i>Powrót', ['/site/index'], ['class' => 'btn btn-outline-secondary']) ?>
+                        <?= Html::a('<i class="fas fa-arrow-left me-2"></i>Powrót', ['site/index'], ['class' => 'btn btn-outline-secondary']) ?>
                     </div>
 
                     <?php ActiveForm::end(); ?>
                     
                     <div class="text-center mt-4 text-muted-light">
-                        Masz już konto? <strong><?= Html::a('Zaloguj się', ['/site/login'], ['class' => 'link-primary-bold']) ?></strong>
+                        Masz już konto? <strong><?= Html::a('Zaloguj się', ['site/login']) ?></strong>
                     </div>
                 </div>
             </div>

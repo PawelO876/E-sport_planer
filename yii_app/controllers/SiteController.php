@@ -7,9 +7,9 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\RegistrationForm;
-use app\models\ContactForm;
+use app\models\extended\LoginForm;
+use app\models\extended\RegistrationForm;
+use app\models\extended\ContactForm;
 
 class SiteController extends Controller
 {
@@ -101,7 +101,7 @@ class SiteController extends Controller
         $model = new RegistrationForm();
         
         if ($model->load(Yii::$app->request->post())) {
-            $user = new \app\models\User();
+            $user = new \app\models\extended\User();
             $user->username = $model->username;
             $user->email = $model->email;
             $user->setPassword($model->password);

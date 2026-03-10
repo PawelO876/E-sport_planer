@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\models\generated;
 
 use Yii;
 use yii\base\Model;
@@ -30,7 +30,10 @@ class RegistrationForm extends Model
             [['username', 'email', 'password', 'password_repeat'], 'required'],
             [['username', 'email', 'password'], 'string', 'max' => 255],
             [['username'], 'string', 'min' => 3],
+            // Password validation: min 6 chars, at least one uppercase, one number, one special character
             [['password'], 'string', 'min' => 6],
+            [['password'], 'match', 'pattern' => '/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};:\'",.<>\/?\\|`~]).+$/', 
+                'message' => 'Hasło musi zawierać minimum 6 znaków, jedną dużą literę, jedną cyfrę i znak specjalny.'],
             [['email'], 'email'],
             [['email'], 'unique', 'targetClass' => User::class, 'targetAttribute' => 'email'],
             [['username'], 'unique', 'targetClass' => User::class, 'targetAttribute' => 'username'],

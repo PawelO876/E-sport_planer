@@ -19,7 +19,7 @@ class ResetPasswordController extends Controller
      */
     public function actionAdmin()
     {
-        $user = \app\models\User::findByUsername('admin');
+        $user = \app\models\extended\User::findByUsername('admin');
         
         if ($user === null) {
             echo "Error: User 'admin' not found.\n";

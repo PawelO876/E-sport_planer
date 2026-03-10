@@ -2,8 +2,8 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use app\models\Training;
-use app\models\Rest;
+use app\models\extended\Training;
+use app\models\extended\Rest;
 
 /** @var yii\web\View $this */
 
@@ -21,14 +21,15 @@ $this->title = 'Statystyki';
             <h1><i class="fas fa-chart-line me-2 icon-amber"></i><?= Html::encode($this->title) ?></h1>
             <p class="mb-0">Przeglądaj swoje statystyki i postępy</p>
         </div>
+    </div>
 
     <!-- Main Stat Card -->
-    <div class="card slide-up mb-4" style="background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);">
+    <div class="card slide-up mb-4 dark-gradient-card">
         <div class="card-body text-center py-5">
-            <div class="stat-value" id="mainStatValue" style="font-size: 4rem; font-weight: 700; color: #10b981;">
+            <div class="main-stat-value" id="mainStatValue">
                 <?= $trainingCount ?>
             </div>
-            <p class="mb-3" id="mainStatLabel" style="font-size: 1.25rem; color: #e2e8f0;">Treningów</p>
+            <p class="mb-3 main-stat-label" id="mainStatLabel">Treningów</p>
             
             <!-- Stat Toggles -->
             <div class="d-flex justify-content-center gap-2 flex-wrap">
@@ -51,93 +52,122 @@ $this->title = 'Statystyki';
     <!-- Progress Section -->
     <div class="row g-4">
         <div class="col-lg-8">
-            <div class="card slide-up" style="animation-delay: 0.3s;">
+            <div class="card slide-up animation-delay-5">
                 <div class="card-header">
                     <i class="fas fa-chart-bar me-2"></i>Postępy
                 </div>
                 <div class="card-body">
-                    <div class="row text-center">
-                        <div class="col-6">
-                            <div class="progress-ring mx-auto mb-3" style="width: 120px; height: 120px; position: relative;">
-                                <svg width="120" height="120" viewBox="0 0 120 120">
-                                    <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(99, 102, 241, 0.2)" stroke-width="10"/>
-                                    <circle cx="60" cy="60" r="50" fill="none" stroke="#6366f1" stroke-width="10" 
-                                        stroke-dasharray="<?= min($trainingCount * 10, 314) ?> 314" 
-                                        stroke-linecap="round" 
-                                        transform="rotate(-90 60 60)"/>
-                                </svg>
-                                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                                    <strong style="font-size: 1.5rem;"><?= min($trainingCount * 10, 100) ?>%</strong>
-                                </div>
-                            <p class="text-muted">Cel: 10 treningów</p>
+                    <!-- Training Progress -->
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span><i class="fas fa-bullseye me-2 text-success"></i><strong>Treningi</strong></span>
+                            <span class="badge bg-success"><?= $trainingCount ?>/10</span>
                         </div>
-                        <div class="col-6">
-                            <div class="progress-ring mx-auto mb-3" style="width: 120px; height: 120px; position: relative;">
-                                <svg width="120" height="120" viewBox="0 0 120 120">
-                                    <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(139, 92, 246, 0.2)" stroke-width="10"/>
-                                    <circle cx="60" cy="60" r="50" fill="none" stroke="#8b5cf6" stroke-width="10" 
-                                        stroke-dasharray="<?= min($restCount * 15, 314) ?> 314" 
-                                        stroke-linecap="round" 
-                                        transform="rotate(-90 60 60)"/>
-                                </svg>
-                                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                                    <strong style="font-size: 1.5rem;"><?= min($restCount * 15, 100) ?>%</strong>
-                                </div>
-                            <p class="text-muted">Cel: 7 dni odpoczynku</p>
+                        <div class="progress" style="height: 24px;">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: <?= min($trainingCount * 10, 100) ?>%;" aria-valuenow="<?= $trainingCount ?>" aria-valuemin="0" aria-valuemax="10">
+                                <?= min($trainingCount * 10, 100) ?>%
+                            </div>
                         </div>
+                        <p class="text-muted small mt-1">Cel: 10 treningów</p>
+                    </div>
+                    
+                    <!-- Rest Progress -->
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span><i class="fas fa-moon me-2 text-purple"></i><strong>Odpoczynek</strong></span>
+                            <span class="badge bg-purple"><?= $restCount ?>/7</span>
+                        </div>
+                        <div class="progress" style="height: 24px;">
+                            <div class="progress-bar bg-purple" role="progressbar" style="width: <?= min($restCount * 15, 100) ?>%;" aria-valuenow="<?= $restCount ?>" aria-valuemin="0" aria-valuemax="7">
+                                <?= min($restCount * 15, 100) ?>%
+                            </div>
+                        </div>
+                        <p class="text-muted small mt-1">Cel: 7 dni odpoczynku</p>
+                    </div>
+                    
+                    <!-- Summary Stats -->
+                    <div class="row text-center mt-4">
+                        <div class="col-4">
+                            <div class="stat-box p-3 rounded">
+                                <i class="fas fa-bullseye fa-2x text-success mb-2"></i>
+                                <h4 class="mb-0"><?= $trainingCount ?></h4>
+                                <small class="text-muted">Treningów</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-box p-3 rounded">
+                                <i class="fas fa-clock fa-2x text-primary mb-2"></i>
+                                <h4 class="mb-0"><?= $totalMinutes ?: 0 ?></h4>
+                                <small class="text-muted">Minut</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-box p-3 rounded">
+                                <i class="fas fa-moon fa-2x text-purple mb-2"></i>
+                                <h4 class="mb-0"><?= $restCount ?></h4>
+                                <small class="text-muted">Odpoczynków</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
         </div>
 
         <div class="col-lg-4">
-            <div class="card slide-up" style="animation-delay: 0.35s;">
+            <div class="card slide-up animation-delay-6">
                 <div class="card-header">
                     <i class="fas fa-star me-2"></i>Twoje osiągnięcia
                 </div>
                 <div class="card-body">
                     <?php if ($trainingCount >= 1): ?>
                         <div class="d-flex align-items-center mb-3">
-                            <div class="me-3" style="width: 40px; height: 40px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <div class="me-3 icon-box ach-icon-gold">
                                 <i class="fas fa-fire text-white"></i>
                             </div>
                             <div>
                                 <strong>Pierwszy krok!</strong>
-                                <p class=" mb-0 small">Ukończono pierwszy trening</p>
+                                <p class="mb-0 small">Ukończono pierwszy trening</p>
                             </div>
+                        </div>
                     <?php endif; ?>
                     
                     <?php if ($trainingCount >= 5): ?>
                         <div class="d-flex align-items-center mb-3">
-                            <div class="me-3" style="width: 40px; height: 40px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <div class="me-3 icon-box ach-icon-green">
                                 <i class="fas fa-medal text-white"></i>
                             </div>
                             <div>
                                 <strong>Na fali!</strong>
-                                <p class=" mb-0 small">5 ukończonych treningów</p>
+                                <p class="mb-0 small">5 ukończonych treningów</p>
                             </div>
+                        </div>
                     <?php endif; ?>
                     
                     <?php if ($restCount >= 3): ?>
                         <div class="d-flex align-items-center mb-3">
-                            <div class="me-3" style="width: 40px; height: 40px; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <div class="me-3 icon-box ach-icon-purple">
                                 <i class="fas fa-heart text-white"></i>
                             </div>
                             <div>
                                 <strong>Dbaj o siebie!</strong>
-                                <p class=" mb-0 small">3 wpisy odpoczynku</p>
+                                <p class="mb-0 small">3 wpisy odpoczynku</p>
                             </div>
+                        </div>
                     <?php endif; ?>
                     
                     <?php if ($trainingCount < 1 && $restCount < 1): ?>
                         <div class="text-center py-4">
-                            <i class="fas fa-trophy fa-3x  mb-3"></i>
-                            <p >Zacznij trenować aby odblokować osiągnięcia!</p>
+                            <i class="fas fa-trophy fa-3x mb-3"></i>
+                            <p>Zacznij trenować aby odblokować osiągnięcia!</p>
                         </div>
                     <?php endif; ?>
                 </div>
+            </div>
         </div>
+    </div>
 
     <!-- Quick Actions -->
-    <div class="card mt-4 slide-up" style="animation-delay: 0.4s;">
+    <div class="card mt-4 slide-up animation-delay-7">
         <div class="card-header">
             <i class="fas fa-bolt me-2"></i>Szybkie działania
         </div>
@@ -147,37 +177,20 @@ $this->title = 'Statystyki';
                     <?= Html::a('<i class="fas fa-plus me-2"></i>Dodaj trening', ['/training/create'], ['class' => 'btn btn-success w-100']) ?>
                 </div>
                 <div class="col-md-4">
-                    <?= Html::a('<i class="fas fa-moon me-2"></i>Dodaj odpoczynek', ['/rest/index'], ['class' => 'btn btn-primary w-100', 'style' => 'background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); border: none;']) ?>
+                    <?= Html::a('<i class="fas fa-moon me-2"></i>Dodaj odpoczynek', ['/rest/index'], ['class' => 'btn btn-primary w-100 btn-gradient-purple']) ?>
                 </div>
                 <div class="col-md-4">
                     <?= Html::a('<i class="fas fa-history me-2"></i>Historia treningów', ['/training/index'], ['class' => 'btn btn-outline-secondary w-100']) ?>
                 </div>
+            </div>
         </div>
+    </div>
     
     <!-- Back Button -->
     <div class="mt-4">
         <?= Html::a('<i class="fas fa-arrow-left me-2"></i>Wróć do strony głównej', ['/site/index'], ['class' => 'btn btn-outline-secondary']) ?>
     </div>
-
-<style>
-.progress-ring circle {
-    transition: stroke-dasharray 0.5s ease;
-}
-.stat-btn {
-    background: rgba(255, 255, 255, 0.1);
-    color: #e2e8f0;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease;
-}
-.stat-btn:hover, .stat-btn.active {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.4);
-}
-.stat-value {
-    transition: all 0.5s ease;
-}
-</style>
+</div>
 
 <script>
 function changeStat(btn, value, label, color) {
@@ -203,3 +216,4 @@ function changeStat(btn, value, label, color) {
     document.getElementById('mainStatLabel').textContent = label;
 }
 </script>
+

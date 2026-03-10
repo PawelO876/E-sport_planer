@@ -9,6 +9,7 @@ use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 
@@ -48,36 +49,46 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= Yii::$app->homeUrl ?>">
-                        <i class="fas fa-home me-1"></i> Start
+                    <a class="nav-link" href="<?= Url::to(['site/index']) ?>">
+                        <i class="fas fa-home me-1"></i> <?= Html::encode('Start') ?>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['/training/index']) ?>">
-                        <i class="fas fa-bullseye me-1"></i> Treningi
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['/rest/index']) ?>">
-                        <i class="fas fa-moon me-1"></i> Odpoczynek
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['/stats/index']) ?>">
-                        <i class="fas fa-chart-line me-1"></i> Statystyki
+                    <a class="nav-link" href="<?= Url::to(['site/contact']) ?>">
+                        <i class="fas fa-envelope me-1"></i> <?= Html::encode('Kontakt') ?>
                     </a>
                 </li>
                 <?php if (Yii::$app->user->isGuest): ?>
-                    <li class="nav-item ms-md-2">
-                        <a class="nav-link btn btn-primary btn-sm px-3" href="<?= Yii::$app->urlManager->createUrl(['/site/login']) ?>">
-                            <i class="fas fa-sign-in-alt me-1"></i> Login
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= Url::to(['site/login']) ?>">
+                            <i class="fas fa-sign-in-alt me-1"></i> <?= Html::encode('Zaloguj się') ?>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= Url::to(['site/register']) ?>">
+                            <i class="fas fa-user-plus me-1"></i> <?= Html::encode('Rejestracja') ?>
                         </a>
                     </li>
                 <?php else: ?>
                     <li class="nav-item">
+                        <a class="nav-link" href="<?= Url::to(['training/index']) ?>">
+                            <i class="fas fa-bullseye me-1"></i> <?= Html::encode('Treningi') ?>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= Url::to(['rest/index']) ?>">
+                            <i class="fas fa-moon me-1"></i> <?= Html::encode('Odpoczynek') ?>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= Url::to(['stats/index']) ?>">
+                            <i class="fas fa-chart-line me-1"></i> <?= Html::encode('Statystyki') ?>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <?= Html::beginForm(['/site/logout'], 'post', ['class' => 'd-inline']) ?>
                             <button type="submit" class="nav-link btn btn-link logout">
-                                <i class="fas fa-sign-out-alt me-1"></i> Logout (<?= Yii::$app->user->identity->username ?>)
+                                <i class="fas fa-sign-out-alt me-1"></i> Logout (<?= Html::encode(Yii::$app->user->identity->username) ?>)
                             </button>
                         <?= Html::endForm() ?>
                     </li>

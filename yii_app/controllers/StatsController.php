@@ -4,8 +4,8 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
-use app\models\Training;
-use app\models\Rest;
+use app\models\extended\Training;
+use app\models\extended\Rest;
 
 class StatsController extends Controller
 {
