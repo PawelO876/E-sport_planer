@@ -11,7 +11,7 @@
     --dark-bg: #0f172a;
     --card-bg: #1e293b;
     --text-light: #f8fafc;
-    --text-muted: #94a3b8;
+    --text-muted: #cbd5e1;
     --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
     --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
     --gradient-dark: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
@@ -29,10 +29,158 @@ html {
 
 body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background: var(--gradient-dark);
+    background: #1a1a2e;
     min-height: 100vh;
     color: var(--text-light);
     margin: 0;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Light mode */
+body.light-mode {
+    background: #f0f4f8;
+    color: #2d3748;
+}
+
+body.light-mode .navbar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+body.light-mode .navbar-brand {
+    color: #2d3748 !important;
+}
+
+body.light-mode .nav-link {
+    color: #2d3748 !important;
+}
+
+body.light-mode .card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .card-body {
+    color: #2d3748;
+}
+
+body.light-mode .stat-box {
+    background: #f7fafc !important;
+    border: 1px solid #e2e8f0;
+    color: #2d3748;
+}
+
+body.light-mode .stat-box h4 {
+    color: #2d3748 !important;
+}
+
+body.light-mode .stat-box small {
+    color: #718096 !important;
+}
+
+body.light-mode .form-control {
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    color: #2d3748;
+}
+
+body.light-mode .form-control:focus {
+    background: #ffffff;
+    color: #2d3748;
+    border-color: #6366f1;
+}
+
+body.light-mode .table {
+    color: #2d3748;
+}
+
+body.light-mode .table thead th {
+    background: #f7fafc;
+    color: #2d3748;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+body.light-mode .table tbody tr {
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+body.light-mode footer {
+    background: rgba(255, 255, 255, 0.95);
+    border-top: 1px solid #e2e8f0;
+}
+
+body.light-mode footer span {
+    color: #2d3748 !important;
+}
+
+body.light-mode .page-header {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .hero-section {
+    background: #e2e8f0;
+}
+
+body.light-mode .feature-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .feature-card p {
+    color: #718096;
+}
+
+body.light-mode .feature-card h2 {
+    color: #2d3748;
+}
+
+body.light-mode .login-section {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .login-card h2 {
+    color: #2d3748;
+}
+
+body.light-mode .form-label {
+    color: #2d3748;
+}
+
+body.light-mode .form-check-label {
+    color: #718096;
+}
+
+body.light-mode .btn-outline-secondary {
+    border: 1px solid #e2e8f0;
+    color: #2d3748;
+}
+
+body.light-mode .btn-outline-secondary:hover {
+    background: #f7fafc;
+    border-color: #cbd5e0;
+    color: #2d3748;
+}
+
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4,
+body.light-mode h5,
+body.light-mode h6 {
+    color: #2d3748 !important;
+}
+
+body.light-mode .page-header h1 {
+    background: none;
+    -webkit-text-fill-color: #2d3748;
+    color: #2d3748 !important;
 }
 
 /* Navbar Styles */
@@ -42,6 +190,18 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 0.75rem 0;
     z-index: 1030;
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
+    color: #f8fafc;
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    text-decoration: none;
+}
+
+body.light-mode #theme-toggle {
+    color: #2d3748;
 }
 
 .navbar-brand {
@@ -624,8 +784,8 @@ footer .text-muted {
 .text-green-color { color: #10b981 !important; }
 .text-amber-color { color: #f59e0b !important; }
 .text-cyan-color { color: #06b6d4 !important; }
-.text-muted-light { color: #94a3b8 !important; }
-.text-muted-lighter { color: #cbd5e1 !important; }
+.text-muted-light { color: #cbd5e1 !important; }
+.text-muted-lighter { color: #e2e8f0 !important; }
 
 
 .animation-delay-1 { animation-delay: 0.1s !important; }
@@ -709,10 +869,10 @@ footer .text-muted {
     font-weight: 600 !important;
 }
 .link-muted {
-    color: #94a3b8 !important;
+    color: #cbd5e1 !important;
 }
 .link-muted-light {
-    color: #cbd5e1 !important;
+    color: #e2e8f0 !important;
 }
 
 /* Login Section */
@@ -862,7 +1022,7 @@ footer .text-muted {
 }
 
 .stat-box small {
-    color: #94a3b8 !important;
+    color: #cbd5e1 !important;
 }
 
 

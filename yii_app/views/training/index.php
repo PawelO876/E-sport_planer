@@ -15,7 +15,7 @@ $this->title = 'Treningi';
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
             <div>
                 <h1><i class="fas fa-bullseye me-2 icon-green"></i><?= Html::encode($this->title) ?></h1>
-                <p class="text-muted mb-0">Zarządzaj swoimi treningami i śledź postępy</p>
+                <p class="mb-0">Zarządzaj swoimi treningami i śledź postępy</p>
             </div>
             <?= Html::a('<i class="fas fa-plus me-2"></i>Dodaj trening', ['create'], ['class' => 'btn btn-success']) ?>
         </div>
@@ -62,21 +62,21 @@ $this->title = 'Treningi';
                             <div class="stat-box p-3 rounded">
                                 <i class="fas fa-bullseye fa-2x text-success mb-2"></i>
                                 <h4 class="mb-0"><?= $trainingCount ?></h4>
-                                <small class="text-muted">Treningów</small>
+                                <small>Treningów</small>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="stat-box p-3 rounded">
                                 <i class="fas fa-clock fa-2x text-primary mb-2"></i>
                                 <h4 class="mb-0"><?= $totalMinutes ?></h4>
-                                <small class="text-muted">Minut</small>
+                                <small>Minut</small>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="stat-box p-3 rounded">
                                 <i class="fas fa-gamepad fa-2x text-purple mb-2"></i>
                                 <h4 class="mb-0"><?= $uniqueGames ?></h4>
-                                <small class="text-muted">Gier</small>
+                                <small>Gier</small>
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@ $this->title = 'Treningi';
                             </div>
                         <?php endforeach; ?>
                     <?php else: ?>
-                        <p class="text-muted text-center">Brak danych o typach treningów</p>
+                        <p class="text-center">Brak danych o typach treningów</p>
                     <?php endif; ?>
                 </div>
             </div>

@@ -18,7 +18,7 @@ $this->title = 'Rejestracja';
                     <div class="text-center mb-4">
                         <i class="fas fa-user-plus fa-4x icon-primary"></i>
                         <h2 class="mt-3">Zarejestruj się</h2>
-                        <p class="text-muted">Stwórz nowe konto</p>
+                        <p>Stwórz nowe konto</p>
                     </div>
                     
                     <?php $form = ActiveForm::begin([
@@ -60,7 +60,7 @@ $this->title = 'Rejestracja';
 
                     <?php ActiveForm::end(); ?>
                     
-                    <div class="text-center mt-4 text-muted-light">
+                    <div class="text-center mt-4">
                         Masz już konto? <strong><?= Html::a('Zaloguj się', ['site/login']) ?></strong>
                     </div>
                 </div>

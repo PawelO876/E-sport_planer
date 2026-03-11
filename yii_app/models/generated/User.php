@@ -15,6 +15,7 @@ use yii\web\IdentityInterface;
  * @property string $password
  * @property string|null $auth_key
  * @property string|null $access_token
+ * @property string|null $role
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -34,6 +35,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             [['username', 'email', 'password'], 'required'],
             [['username', 'email', 'password', 'auth_key', 'access_token'], 'string', 'max' => 255],
+            [['role'], 'string', 'max' => 20],
             [['username'], 'unique'],
             [['email'], 'unique'],
         ];
@@ -51,6 +53,7 @@ class User extends ActiveRecord implements IdentityInterface
             'password' => 'Password',
             'auth_key' => 'Auth Key',
             'access_token' => 'Access Token',
+            'role' => 'Role',
         ];
     }
 

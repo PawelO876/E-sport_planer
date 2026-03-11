@@ -10,6 +10,9 @@ use yii\filters\VerbFilter;
 use app\models\extended\LoginForm;
 use app\models\extended\RegistrationForm;
 use app\models\extended\ContactForm;
+use app\models\extended\PasswordResetRequestForm;
+use app\models\extended\PasswordResetForm;
+use app\models\extended\Message;
 
 class SiteController extends Controller
 {
@@ -21,10 +24,15 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout'],
+                'only' => ['logout', 'my-messages', 'update-message', 'delete-message'],
                 'rules' => [
                     [
                         'actions' => ['logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['my-messages', 'update-message', 'delete-message'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -34,6 +42,7 @@ class SiteController extends Controller
                 'class' => VerbFilter::class,
                 'actions' => [
                     'logout' => ['post'],
+                    'delete-message' => ['post'],
                 ],
             ],
         ];
@@ -104,6 +113,7 @@ class SiteController extends Controller
             $user = new \app\models\extended\User();
             $user->username = $model->username;
             $user->email = $model->email;
+            $user->role = \app\models\extended\User::ROLE_USER;
             $user->setPassword($model->password);
             $user->generateAuthKey();
             
@@ -140,10 +150,16 @@ class SiteController extends Controller
     public function actionContact()
     {
         $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
+        if ($model->load(Yii::$app->request->post())) {
+            // Save message to database
+            $model->saveMessage();
+            
+            // Send email notification
+            if ($model->contact(Yii::$app->params['adminEmail'])) {
+                Yii::$app->session->setFlash('contactFormSubmitted');
 
-            return $this->refresh();
+                return $this->refresh();
+            }
         }
         return $this->render('contact', [
             'model' => $model,
@@ -158,5 +174,119 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    /**
+     * Requests password reset.
+     *
+     * @return Response|string
+     */
+    public function actionRequestPasswordReset()
+    {
+        $model = new PasswordResetRequestForm();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->sendEmail()) {
+                // Find user and get token, then redirect
+                $user = \app\models\extended\User::findOne(['email' => $model->email]);
+                if ($user) {
+                    return $this->redirect(['site/reset-password', 'token' => $user->access_token]);
+                }
+            } else {
+                Yii::$app->session->setFlash('error', 'Nie znaleziono konta z tym adresem email.');
+            }
+        }
+
+        return $this->render('requestPasswordResetToken', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Resets password.
+     *
+     * @param string $token
+     * @return Response|string
+     * @throws BadRequestHttpException
+     */
+    public function actionResetPassword($token)
+    {
+        try {
+            $model = new PasswordResetForm();
+        } catch (\Exception $e) {
+            throw new \yii\web\BadRequestHttpException($e->getMessage());
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->resetPassword($token)) {
+            Yii::$app->session->setFlash('success', 'Hasło zostało zmienione. Możesz się teraz zalogować.');
+            return $this->redirect(['login']);
+        }
+
+        return $this->render('resetPassword', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Lists user's messages.
+     *
+     * @return string
+     */
+    public function actionMyMessages()
+    {
+        $messages = Message::find()
+            ->where(['user_id' => Yii::$app->user->id])
+            ->orderBy(['created_at' => SORT_DESC])
+            ->all();
+
+        return $this->render('myMessages', [
+            'messages' => $messages,
+        ]);
+    }
+
+    /**
+     * Updates user's message.
+     *
+     * @param int $id
+     * @return Response|string
+     */
+    public function actionUpdateMessage($id)
+    {
+        $message = Message::findOne(['id' => $id, 'user_id' => Yii::$app->user->id]);
+        
+        if (!$message) {
+            Yii::$app->session->setFlash('error', 'Wiadomość nie została znaleziona.');
+            return $this->redirect(['my-messages']);
+        }
+
+        if ($message->load(Yii::$app->request->post())) {
+            if ($message->save()) {
+                Yii::$app->session->setFlash('success', 'Wiadomość została zaktualizowana.');
+                return $this->redirect(['my-messages']);
+            }
+        }
+
+        return $this->render('updateMessage', [
+            'model' => $message,
+        ]);
+    }
+
+    /**
+     * Deletes user's message.
+     *
+     * @param int $id
+     * @return Response
+     */
+    public function actionDeleteMessage($id)
+    {
+        $message = Message::findOne(['id' => $id, 'user_id' => Yii::$app->user->id]);
+        
+        if ($message) {
+            $message->delete();
+            Yii::$app->session->setFlash('success', 'Wiadomość została usunięta.');
+        } else {
+            Yii::$app->session->setFlash('error', 'Wiadomość nie została znaleziona.');
+        }
+
+        return $this->redirect(['my-messages']);
     }
 }

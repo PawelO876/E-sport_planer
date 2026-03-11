@@ -15,7 +15,7 @@ use yii\helpers\Html;
                     <div class="text-center mb-4">
                         <i class="fas fa-user-circle fa-4x icon-primary"></i>
                         <h2 class="mt-3"><?= Html::encode('Zaloguj się') ?></h2>
-                        <p class="text-muted"><?= Html::encode('Wpisz swoje dane aby kontynuować') ?></p>
+                        <p><?= Html::encode('Wpisz swoje dane aby kontynuować') ?></p>
                     </div>
                     <?php $form = ActiveForm::begin([
                         'id' => 'login-form-home',
@@ -48,7 +48,7 @@ use yii\helpers\Html;
                     </div>
                     <?php ActiveForm::end(); ?>
 
-                    <div class="text-center mt-4 text-muted-light">
+                    <div class="text-center mt-4">
                         <?= Html::encode('Nie masz jeszcze konta?') ?> <strong><?= Html::a(Html::encode('Zarejestruj się'), ['site/register']) ?></strong>
                     </div>
                 </div>

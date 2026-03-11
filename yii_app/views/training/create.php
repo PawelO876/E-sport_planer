@@ -15,7 +15,7 @@ $this->title = 'Nowy trening';
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
             <div>
                 <h1><i class="fas fa-plus-circle me-2 icon-green"></i><?= Html::encode($this->title) ?></h1>
-                <p class="text-muted mb-0">Dodaj nowy trening do swojego planu</p>
+                <p class="mb-0">Dodaj nowy trening do swojego planu</p>
             </div>
     </div>
 

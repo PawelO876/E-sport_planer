@@ -68,7 +68,7 @@ $this->title = 'Statystyki';
                                 <?= min($trainingCount * 10, 100) ?>%
                             </div>
                         </div>
-                        <p class="text-muted small mt-1">Cel: 10 treningów</p>
+                        <p class="small mt-1">Cel: 10 treningów</p>
                     </div>
                     
                     <!-- Rest Progress -->
@@ -82,7 +82,7 @@ $this->title = 'Statystyki';
                                 <?= min($restCount * 15, 100) ?>%
                             </div>
                         </div>
-                        <p class="text-muted small mt-1">Cel: 7 dni odpoczynku</p>
+                        <p class="small mt-1">Cel: 7 dni odpoczynku</p>
                     </div>
                     
                     <!-- Summary Stats -->
@@ -91,21 +91,21 @@ $this->title = 'Statystyki';
                             <div class="stat-box p-3 rounded">
                                 <i class="fas fa-bullseye fa-2x text-success mb-2"></i>
                                 <h4 class="mb-0"><?= $trainingCount ?></h4>
-                                <small class="text-muted">Treningów</small>
+                                <small>Treningów</small>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="stat-box p-3 rounded">
                                 <i class="fas fa-clock fa-2x text-primary mb-2"></i>
                                 <h4 class="mb-0"><?= $totalMinutes ?: 0 ?></h4>
-                                <small class="text-muted">Minut</small>
+                                <small>Minut</small>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="stat-box p-3 rounded">
                                 <i class="fas fa-moon fa-2x text-purple mb-2"></i>
                                 <h4 class="mb-0"><?= $restCount ?></h4>
-                                <small class="text-muted">Odpoczynków</small>
+                                <small>Odpoczynków</small>
                             </div>
                         </div>
                     </div>

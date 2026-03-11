@@ -16,7 +16,7 @@ $this->title = 'Odpoczynek';
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
             <div>
                 <h1><i class="fas fa-moon me-2 icon-purple"></i><?= Html::encode($this->title) ?></h1>
-                <p class="text-muted mb-0">Zarządzaj czasem odpoczynku i regeneracji</p>
+                <p class="mb-0">Zarządzaj czasem odpoczynku i regeneracji</p>
             </div>
         </div>
     </div>
@@ -125,14 +125,14 @@ $this->title = 'Odpoczynek';
                                 <div class="stat-box p-3 rounded">
                                     <i class="fas fa-moon fa-2x text-purple mb-2"></i>
                                     <h4 class="mb-0"><?= $restCount ?></h4>
-                                    <small class="text-muted">Wpisów</small>
+                                    <small>Wpisów</small>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="stat-box p-3 rounded">
                                     <i class="fas fa-bed fa-2x text-primary mb-2"></i>
                                     <h4 class="mb-0"><?= $sleepCount ?></h4>
-                                    <small class="text-muted">Sesje snu</small>
+                                    <small>Sesje snu</small>
                                 </div>
                             </div>
                         </div>
@@ -198,9 +198,9 @@ $this->title = 'Odpoczynek';
             <?php else: ?>
                 <div class="card slide-up">
                     <div class="card-body text-center py-5">
-                        <i class="fas fa-moon fa-4x text-muted mb-3"></i>
-                        <h4 class="text-muted">Brak zapisanych odpoczynków</h4>
-                        <p class="text-muted">Pamiętaj o regeneracji!</p>
+                        <i class="fas fa-moon fa-4x mb-3"></i>
+                        <h4>Brak zapisanych odpoczynków</h4>
+                        <p>Pamiętaj o regeneracji!</p>
                     </div>
                 </div>
             <?php endif; ?>
