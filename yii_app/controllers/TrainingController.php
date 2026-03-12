@@ -45,13 +45,9 @@ class TrainingController extends Controller
         $training = new Training();
 
         if ($training->load(Yii::$app->request->post()) && $training->validate()) {
-         
             $training->user_id = Yii::$app->user->id;
-            
             $training->save();
-
             Yii::$app->session->setFlash('success', 'Trening został dodany!');
-
             return $this->redirect(['index']);
         }
 

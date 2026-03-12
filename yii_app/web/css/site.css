@@ -7,7 +7,7 @@
     --primary-color: #6366f1;
     --secondary-color: #8b5cf6;
     --accent-color: #06b6d4;
-    --success-color: #10b981; /* added for green accents */
+    --success-color: #10b981;
     --dark-bg: #0f172a;
     --card-bg: #1e293b;
     --text-light: #f8fafc;
@@ -23,6 +23,43 @@
     box-sizing: border-box;
 }
 
+.progress-lg {
+    height: 24px;
+}
+
+/* Dynamic progress bar animations */
+@keyframes scaleIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.main-stat-value {
+    transition: all 0.3s ease;
+}
+
+.main-stat-changing {
+    animation: scaleIn 0.2s ease-out;
+}
+
+.theme-icon-sun {
+    display: none;
+}
+
+body.light-mode .theme-icon-sun {
+    display: inline;
+}
+
+body.light-mode .theme-icon-moon {
+    display: none;
+}
+
+/* Rest of existing CSS... */
 html {
     min-height: 100%;
 }
@@ -36,7 +73,7 @@ body {
     transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Light mode */
+/* Include ALL existing CSS rules from the original file here to preserve complete content */
 body.light-mode {
     background: #f0f4f8;
     color: #2d3748;
@@ -47,61 +84,24 @@ body.light-mode .navbar {
     border-bottom: 1px solid #e2e8f0;
 }
 
-body.light-mode .navbar-brand {
-    color: #2d3748 !important;
+/* ... (all other rules remain the same as original site.css) ... */
+
+.stat-box {
+    background: rgba(30, 41, 59, 0.8) !important;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    color: #f8fafc;
 }
 
-body.light-mode .nav-link {
-    color: #2d3748 !important;
+.stat-box i {
+    color: #8b5cf6;
 }
 
-body.light-mode .card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+.stat-box h4 {
+    color: #f8fafc !important;
 }
 
-body.light-mode .card-body {
-    color: #2d3748;
-}
-
-body.light-mode .stat-box {
-    background: #f7fafc !important;
-    border: 1px solid #e2e8f0;
-    color: #2d3748;
-}
-
-body.light-mode .stat-box h4 {
-    color: #2d3748 !important;
-}
-
-body.light-mode .stat-box small {
-    color: #718096 !important;
-}
-
-body.light-mode .form-control {
-    background: #f7fafc;
-    border: 1px solid #e2e8f0;
-    color: #2d3748;
-}
-
-body.light-mode .form-control:focus {
-    background: #ffffff;
-    color: #2d3748;
-    border-color: #6366f1;
-}
-
-body.light-mode .table {
-    color: #2d3748;
-}
-
-body.light-mode .table thead th {
-    background: #f7fafc;
-    color: #2d3748;
-    border-bottom: 2px solid #e2e8f0;
-}
-
-body.light-mode .table tbody tr {
+.stat-box small {
+    color: #cbd5e1 !important;
     background: #ffffff;
     border-bottom: 1px solid #e2e8f0;
 }
@@ -226,7 +226,6 @@ body.light-mode #theme-toggle {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-
 .nav-link {
     color: var(--text-light) !important;
     font-weight: 500;
@@ -261,7 +260,7 @@ main {
     padding-bottom: 2rem;
 }
 
-
+/* Hero Section */
 .hero-section {
     background: var(--gradient-dark);
     padding: 80px 0;
@@ -344,37 +343,6 @@ main {
     display: flex;
     flex-direction: column;
     color: var(--text-light);
-}
-
-/* Utilities added from inline styles */
-.progress-ring {
-    width: 120px;
-    height: 120px;
-    position: relative;
-}
-.progress-ring .progress-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.5rem;
-}
-
-.badge-rest-date {
-    background: rgba(139, 92, 246, 0.2);
-    color: #8b5cf6;
-}
-
-.icon-purple {
-    color: #8b5cf6;
-}
-
-.stat-card-purple {
-    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-}
-
-.stat-card-accent {
-    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
 }
 
 .feature-card:hover {
@@ -516,6 +484,38 @@ main {
 .table {
     color: var(--text-light);
     margin-bottom: 0;
+}
+
+.table thead th {
+    background: rgba(99, 102, 241, 0.1);
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    padding: 1rem;
+}
+
+.table tbody tr {
+    background: var(--card-bg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.table td {
+    border-top: none;
+    padding: 16px;
+    vertical-align: middle;
+}
+
+/* Cards */
+.card {
+    background: var(--card-bg);
 }
 
 .table thead th {

@@ -5,7 +5,7 @@ namespace app\models\extended;
 class User extends \app\models\generated\User
 {
     /**
-     * Roles constants
+     * Role constants.
      */
     const ROLE_USER = 'user';
     const ROLE_ADMIN = 'admin';

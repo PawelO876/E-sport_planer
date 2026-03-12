@@ -34,7 +34,7 @@ $this->title = 'Logowanie';
 
                     <div class="mb-3">
                         <?= $form->field($model, 'username')->textInput([
-                            'autofocus' => true, 
+                            'autofocus' => true,
                             'placeholder' => 'Nazwa użytkownika'
                         ]) ?>
                     </div>

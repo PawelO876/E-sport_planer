@@ -22,10 +22,10 @@ $this->title = 'Użytkownicy';
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
-                    <th>Nazwa użytkownika</th>
+                    <th>Użytkownik</th>
                     <th>Email</th>
                     <th>Rola</th>
-                    <th>Data utworzenia</th>
+                    <th>Utworzono</th>
                     <th>Akcje</th>
                 </tr>
             </thead>

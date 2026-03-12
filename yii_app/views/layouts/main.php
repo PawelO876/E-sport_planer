@@ -26,16 +26,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/jpeg', 'href' => Yii::
 <head>
     <title><?= Html::encode($this->title) ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Apply theme immediately to prevent flash -->
-    <script>
-        // Apply theme and set icon immediately
-        (function() {
-            if (localStorage.getItem('theme') === 'light') {
-                document.write('<style>body{background:#f0f4f8;color:#2d3748}body.light-mode{background:#f0f4f8;color:#2d3748}body.light-mode .card{background:#fff;border-color:#e2e8f0}body.light-mode .navbar{background:rgba(255,255,255,0.95)!important;border-bottom-color:#e2e8f0}body.light-mode .nav-link{color:#2d3748!important}body.light-mode .footer-custom{background:rgba(255,255,255,0.95)!important;border-top-color:#e2e8f0}body.light-mode .page-header{background:#fff;border-color:#e2e8f0}body.light-mode .form-control{background:#f7fafc;border-color:#e2e8f0;color:#2d3748}body.light-mode .stat-box{background:#f7fafc!important;border-color:#e2e8f0}body.light-mode .table{color:#2d3748}body.light-mode .table thead th{background:#f7fafc;color:#2d3748;border-bottom-color:#e2e8f0}body.light-mode .table tbody tr{background:#fff;border-bottom-color:#e2e8f0}body.light-mode .feature-card{background:#fff;border-color:#e2e8f0}body.light-mode .login-section{background:#fff;border-color:#e2e8f0}body.light-mode h1,body.light-mode h2,body.light-mode h3,body.light-mode h4,body.light-mode h5,body.light-mode h6{color:#2d3748!important}body.light-mode footer span{color:#2d3748!important}body.light-mode .card-body{color:#2d3748}body.light-mode .stat-box h4{color:#2d3748!important}body.light-mode .stat-box small{color:#718096!important}body.light-mode .form-label{color:#2d3748}body.light-mode .form-check-label{color:#718096}body.light-mode .feature-card p{color:#718096}body.light-mode .feature-card h2{color:#2d3748}body.light-mode .login-card h2{color:#2d3748}body.light-mode .btn-outline-secondary{border-color:#e2e8f0;color:#2d3748}body.light-mode #theme-toggle{color:#2d3748}body.light-mode #theme-icon.fa-moon{display:none}body.light-mode #theme-icon.fa-sun{display:inline}#theme-icon.fa-sun{display:none}</style>');
-                document.body.classList.add('light-mode');
-            }
-        })();
-    </script>
+<!-- Theme handled purely by CSS classes & vars -->
     <?php $this->head() ?>
 </head>
 <body class="d-flex flex-column h-100">
@@ -47,16 +38,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/jpeg', 'href' => Yii::
 <!-- Theme Toggle Button -->
         <button class="btn btn-link nav-link me-2" id="theme-toggle" title="Zmień motyw">
             <i id="theme-icon-moon" class="fas fa-moon"></i>
-            <i id="theme-icon-sun" class="fas fa-sun" style="display:none;"></i>
+    <i id="theme-icon-sun" class="fas fa-sun theme-icon-sun"></i>
         </button>
-        <script>
-            (function() {
-                if (localStorage.getItem('theme') === 'light') {
-                    document.getElementById('theme-icon-moon').style.display = 'none';
-                    document.getElementById('theme-icon-sun').style.display = 'inline';
-                }
-            })();
-        </script>
+
         
         <!-- Mobile Toggle Button -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -158,33 +142,43 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/jpeg', 'href' => Yii::
 
 <?php $this->endBody() ?>
 
-<!-- Theme Toggle Script -->
+    <!-- Consolidated Theme Toggle Script -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var themeToggle = document.getElementById('theme-toggle');
-    var themeIconMoon = document.getElementById('theme-icon-moon');
-    var themeIconSun = document.getElementById('theme-icon-sun');
-    
-    // Check for saved theme preference and apply immediately
-    var savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
+(function() {
+    // Apply saved theme immediately (FOUC prevention)
+    if (localStorage.getItem('theme') === 'light') {
         document.body.classList.add('light-mode');
+        document.documentElement.style.setProperty('--bg-primary', '#f0f4f8');
+        document.documentElement.style.setProperty('--text-primary', '#2d3748');
     }
     
-    themeToggle.addEventListener('click', function() {
-        document.body.classList.toggle('light-mode');
+    // Theme toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIconMoon = document.getElementById('theme-icon-moon');
+        const themeIconSun = document.getElementById('theme-icon-sun');
         
+        // Set initial icon state
         if (document.body.classList.contains('light-mode')) {
             themeIconMoon.style.display = 'none';
             themeIconSun.style.display = 'inline';
-            localStorage.setItem('theme', 'light');
-        } else {
-            themeIconMoon.style.display = 'inline';
-            themeIconSun.style.display = 'none';
-            localStorage.setItem('theme', 'dark');
         }
+        
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('light-mode');
+            
+            if (document.body.classList.contains('light-mode')) {
+                themeIconMoon.style.display = 'none';
+                themeIconSun.style.display = 'inline';
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeIconMoon.style.display = 'inline';
+                themeIconSun.style.display = 'none';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
     });
-});
+})();
 </script>
 
 </body>

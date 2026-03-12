@@ -15,16 +15,14 @@ class RestController extends Controller
      */
     public function actionIndex()
     {
-        // Require user to be logged in
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['/site/login']);
         }
-        
+
         $model = new Rest();
 
         if ($model->load(Yii::$app->request->post())) {
             $model->user_id = Yii::$app->user->id;
-
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Dane zapisane.');
                 return $this->refresh();

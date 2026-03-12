@@ -63,7 +63,7 @@ $this->title = 'Statystyki';
                             <span><i class="fas fa-bullseye me-2 text-success"></i><strong>Treningi</strong></span>
                             <span class="badge bg-success"><?= $trainingCount ?>/10</span>
                         </div>
-                        <div class="progress" style="height: 24px;">
+                        <div class="progress progress-lg">
                             <div class="progress-bar bg-success" role="progressbar" style="width: <?= min($trainingCount * 10, 100) ?>%;" aria-valuenow="<?= $trainingCount ?>" aria-valuemin="0" aria-valuemax="10">
                                 <?= min($trainingCount * 10, 100) ?>%
                             </div>
@@ -77,7 +77,7 @@ $this->title = 'Statystyki';
                             <span><i class="fas fa-moon me-2 text-purple"></i><strong>Odpoczynek</strong></span>
                             <span class="badge bg-purple"><?= $restCount ?>/7</span>
                         </div>
-                        <div class="progress" style="height: 24px;">
+                        <div class="progress progress-lg">
                             <div class="progress-bar bg-purple" role="progressbar" style="width: <?= min($restCount * 15, 100) ?>%;" aria-valuenow="<?= $restCount ?>" aria-valuemin="0" aria-valuemax="7">
                                 <?= min($restCount * 15, 100) ?>%
                             </div>
@@ -194,25 +194,18 @@ $this->title = 'Statystyki';
 
 <script>
 function changeStat(btn, value, label, color) {
-    // Update buttons
-    document.querySelectorAll('.stat-btn').forEach(function(b) {
-        b.classList.remove('active');
-    });
+    document.querySelectorAll('.stat-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     
-    // Update value with animation
-    var statValue = document.getElementById('mainStatValue');
+    const statValue = document.getElementById('mainStatValue');
     statValue.style.color = color;
-    statValue.style.transform = 'scale(0.8)';
-    statValue.style.opacity = '0';
+    statValue.classList.add('main-stat-changing');
     
-    setTimeout(function() {
+    setTimeout(() => {
         statValue.textContent = value;
-        statValue.style.transform = 'scale(1)';
-        statValue.style.opacity = '1';
+        statValue.classList.remove('main-stat-changing');
     }, 150);
     
-    // Update label
     document.getElementById('mainStatLabel').textContent = label;
 }
 </script>

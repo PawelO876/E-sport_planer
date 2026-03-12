@@ -112,7 +112,7 @@ $this->title = 'Odpoczynek';
                                 <span><i class="fas fa-moon me-2 text-purple"></i><strong>Cel: 7 dni odpoczynku</strong></span>
                                 <span class="badge bg-purple"><?= $restCount ?>/7</span>
                             </div>
-                            <div class="progress" style="height: 24px;">
+                            <div class="progress progress-lg">
                                 <div class="progress-bar bg-purple" role="progressbar" style="width: <?= min($restCount * 15, 100) ?>%;" aria-valuenow="<?= $restCount ?>" aria-valuemin="0" aria-valuemax="7">
                                     <?= min($restCount * 15, 100) ?>%
                                 </div>

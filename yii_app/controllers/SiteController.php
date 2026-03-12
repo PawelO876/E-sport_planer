@@ -25,25 +25,15 @@ class SiteController extends Controller
             'access' => [
                 'class' => AccessControl::class,
                 'only' => ['logout', 'my-messages', 'update-message', 'delete-message'],
-                'rules' => [
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                    [
-                        'actions' => ['my-messages', 'update-message', 'delete-message'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
+                'rules' => [[
+                    'actions' => ['logout', 'my-messages', 'update-message', 'delete-message'],
+                    'allow' => true,
+                    'roles' => ['@'],
+                ]],
             ],
             'verbs' => [
                 'class' => VerbFilter::class,
-                'actions' => [
-                    'logout' => ['post'],
-                    'delete-message' => ['post'],
-                ],
+                'actions' => ['logout' => ['post'], 'delete-message' => ['post']],
             ],
         ];
     }

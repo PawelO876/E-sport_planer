@@ -49,7 +49,7 @@ $this->title = 'Treningi';
                             <span><i class="fas fa-trophy me-2 text-warning"></i><strong>Cel: 10 treningów</strong></span>
                             <span class="badge bg-success"><?= $trainingCount ?>/10</span>
                         </div>
-                        <div class="progress" style="height: 24px;">
+                        <div class="progress progress-lg">
                             <div class="progress-bar bg-success" role="progressbar" style="width: <?= min($trainingCount * 10, 100) ?>%;" aria-valuenow="<?= $trainingCount ?>" aria-valuemin="0" aria-valuemax="10">
                                 <?= min($trainingCount * 10, 100) ?>%
                             </div>
